@@ -338,29 +338,25 @@ const MODELS = [
       }
     }
   },
+]
 
 
-
-
-];
-
-// State management
-let currentState = {
-  modelIndex: 0,
-  variant: 'primary',
-  language: 'english',
-  currentScale: {
-    primary: MODELS[0].display.primary.baseScale,
-    alternate: MODELS[0].display.alternate.baseScale
-  },
-  isAnimating: false
+// Application state
+const state = {
+  currentModelIndex: 0,
+  currentVariant: 'primary',
+  currentLanguage: 'english',
+  currentScale: 1.0,
+  isAnimating: false,
+  isMobile: /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent),
+  touchStartX: 0,
+  touchEndX: 0
 };
 
 // DOM elements
 const elements = {
   scene: document.querySelector('a-scene'),
   modelContainer: document.getElementById('model-container'),
-  sceneRoot: document.getElementById('scene-root'),
   modelSelector: document.getElementById('model-selector'),
   toggleModelBtn: document.getElementById('toggle-model'),
   toggleLangBtn: document.getElementById('toggle-lang'),
@@ -370,59 +366,144 @@ const elements = {
   modelName: document.getElementById('model-name')
 };
 
-// Initialize the app
+// Initialize the application
 function init() {
+  setupEventListeners();
   initThumbnails();
-  initEventListeners();
-  loadCurrentModel();
+  loadModel();
   showModelName();
 }
 
-// Create thumbnail selector
+// Set up all event listeners
+function setupEventListeners() {
+  // Button event listeners
+  elements.toggleModelBtn.addEventListener('click', toggleVariant);
+  elements.toggleLangBtn.addEventListener('click', toggleLanguage);
+  
+  // Scale slider
+  elements.modelScaleInput.addEventListener('input', (e) => {
+    state.currentScale = parseFloat(e.target.value);
+    elements.modelScaleValue.textContent = state.currentScale.toFixed(2);
+    updateModelScale();
+  });
+  
+  // Mobile-specific events
+  if (state.isMobile) {
+    window.addEventListener('deviceorientation', handleOrientation, true);
+    setupTouchEvents();
+  }
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', handleKeyPress);
+}
+
+// Initialize thumbnail selector
 function initThumbnails() {
+  elements.modelSelector.innerHTML = '';
+  
   MODELS.forEach((model, index) => {
     const thumb = document.createElement('img');
     thumb.src = model.assets.thumbnail;
     thumb.classList.add('thumbnail');
+    thumb.alt = `Model ${index + 1}`;
+    
+    if (index === state.currentModelIndex) {
+      thumb.classList.add('active');
+    }
+    
     thumb.addEventListener('click', () => {
-      if (!currentState.isAnimating) {
-        currentState.modelIndex = index;
-        currentState.currentScale.primary = model.display.primary.baseScale;
-        currentState.currentScale.alternate = model.display.alternate.baseScale;
-        updateScaleValues();
-        animateModelChange();
-        showModelName();
-      }
+      if (state.isAnimating) return;
+      selectModel(index);
     });
+    
     elements.modelSelector.appendChild(thumb);
   });
 }
 
-// Set up event listeners
-function initEventListeners() {
-  elements.toggleModelBtn.addEventListener('click', toggleModelVariant);
-  elements.toggleLangBtn.addEventListener('click', toggleLanguage);
+// Set up touch events for swipe navigation
+function setupTouchEvents() {
+  const container = elements.modelSelector;
   
-  elements.modelScaleInput.addEventListener('input', (e) => {
-    const scale = parseFloat(e.target.value);
-    currentState.currentScale[currentState.variant] = scale;
-    elements.modelScaleValue.textContent = scale.toFixed(2);
-    updateModelScale();
+  container.addEventListener('touchstart', (e) => {
+    state.touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    if (state.isAnimating) return;
+    state.touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+}
+
+// Handle swipe gestures
+function handleSwipe() {
+  const threshold = 50; // Minimum swipe distance in pixels
+  
+  if (state.touchStartX - state.touchEndX > threshold) {
+    // Swipe left - next model
+    navigateModel(1);
+  } else if (state.touchEndX - state.touchStartX > threshold) {
+    // Swipe right - previous model
+    navigateModel(-1);
+  }
+}
+
+// Handle keyboard navigation
+function handleKeyPress(e) {
+  if (state.isAnimating) return;
+  
+  switch(e.key) {
+    case 'ArrowLeft':
+      navigateModel(-1);
+      break;
+    case 'ArrowRight':
+      navigateModel(1);
+      break;
+    case 'v':
+    case 'V':
+      toggleVariant();
+      break;
+    case 'l':
+    case 'L':
+      toggleLanguage();
+      break;
+  }
+}
+
+// Navigate between models
+function navigateModel(direction) {
+  const newIndex = state.currentModelIndex + direction;
+  if (newIndex >= 0 && newIndex < MODELS.length) {
+    selectModel(newIndex);
+  }
+}
+
+// Select a specific model
+function selectModel(index) {
+  state.currentModelIndex = index;
+  state.currentScale = MODELS[index].display[state.currentVariant].baseScale;
+  updateScaleDisplay();
+  animateModelChange();
+  showModelName();
+  
+  // Update active thumbnail
+  document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.thumbnail')[index].classList.add('active');
+  
+  // Center the active thumbnail
+  const activeThumb = document.querySelector('.thumbnail.active');
+  activeThumb.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+    inline: 'center'
   });
 }
 
-// Update UI scale displays
-function updateScaleValues() {
-  const currentScale = currentState.currentScale[currentState.variant];
-  elements.modelScaleInput.value = currentScale;
-  elements.modelScaleValue.textContent = currentScale.toFixed(2);
-}
-
-// Load current model
-function loadCurrentModel() {
-  const model = MODELS[currentState.modelIndex];
-  const variant = currentState.variant;
-  const variantConfig = model.display[variant];
+// Load the current model
+function loadModel() {
+  const model = MODELS[state.currentModelIndex];
+  const variant = state.currentVariant;
+  const config = model.display[variant];
   
   // Clear previous model
   elements.modelContainer.innerHTML = '';
@@ -430,19 +511,15 @@ function loadCurrentModel() {
   // Create new model entity
   const modelEntity = document.createElement('a-entity');
   modelEntity.setAttribute('gltf-model', `url(${model.assets[variant]})`);
-  modelEntity.setAttribute('position', 
-    `${variantConfig.position.x} ${variantConfig.position.y} ${variantConfig.position.z}`);
-  modelEntity.setAttribute('rotation',
-    `${variantConfig.rotation.x} ${variantConfig.rotation.y} ${variantConfig.rotation.z}`);
-  
-  const scale = currentState.currentScale[variant];
-  modelEntity.setAttribute('scale', `${scale} ${scale} ${scale}`);
+  modelEntity.setAttribute('position', `${config.position.x} ${config.position.y} ${config.position.z}`);
+  modelEntity.setAttribute('rotation', `${config.rotation.x} ${config.rotation.y} ${config.rotation.z}`);
+  modelEntity.setAttribute('scale', `${state.currentScale} ${state.currentScale} ${state.currentScale}`);
   
   // Add rotation animation
   modelEntity.setAttribute('animation__rotate', {
-    property: 'position.y',
-    to: 0.5,
-    dur: 2000,
+    property: 'rotation.y',
+    to: 360,
+    dur: 20000,
     loop: true,
     easing: 'linear'
   });
@@ -451,10 +528,68 @@ function loadCurrentModel() {
   animateEntrance(modelEntity);
 }
 
+// Animate model entrance
+function animateEntrance(modelEntity) {
+  state.isAnimating = true;
+  modelEntity.object3D.scale.set(0.01, 0.01, 0.01);
+  
+  gsap.to(modelEntity.object3D.scale, {
+    x: state.currentScale,
+    y: state.currentScale,
+    z: state.currentScale,
+    duration: 0.8,
+    ease: "elastic.out(1, 0.5)",
+    onComplete: () => {
+      state.isAnimating = false;
+    }
+  });
+}
+
+// Handle device orientation (mobile)
+function handleOrientation(event) {
+  if (state.isAnimating) return;
+  
+  const model = elements.modelContainer.children[0];
+  if (!model) return;
+  
+  const beta = event.beta || 0;   // -180 to 180 (front/back tilt)
+  const gamma = event.gamma || 0; // -90 to 90 (left/right tilt)
+  
+  // Adjust model position slightly based on device tilt
+  const adjustX = gamma * 0.01;
+  const adjustY = beta * 0.005;
+  
+  const currentPos = model.getAttribute('position');
+  model.setAttribute('position', {
+    x: currentPos.x + adjustX,
+    y: currentPos.y + adjustY,
+    z: currentPos.z
+  });
+}
+
+// Toggle between primary/alternate models
+function toggleVariant() {
+  if (state.isAnimating) return;
+  state.currentVariant = state.currentVariant === 'primary' ? 'alternate' : 'primary';
+  state.currentScale = MODELS[state.currentModelIndex].display[state.currentVariant].baseScale;
+  updateScaleDisplay();
+  animateModelChange();
+  showModelName();
+}
+
+// Cycle through languages
+function toggleLanguage() {
+  if (state.isAnimating) return;
+  const languages = ['english', 'arabic', 'french'];
+  const currentIndex = languages.indexOf(state.currentLanguage);
+  state.currentLanguage = languages[(currentIndex + 1) % languages.length];
+  showModelName();
+}
+
 // Show model name in popup
 function showModelName() {
-  const model = MODELS[currentState.modelIndex];
-  elements.modelName.textContent = model.name[currentState.language];
+  const model = MODELS[state.currentModelIndex];
+  elements.modelName.textContent = model.name[state.currentLanguage];
   
   elements.modelPopup.classList.add('show');
   setTimeout(() => {
@@ -462,68 +597,40 @@ function showModelName() {
   }, 3000);
 }
 
-// Animate model entrance
-function animateEntrance(modelEntity) {
-  currentState.isAnimating = true;
-  modelEntity.object3D.scale.set(0.01, 0.01, 0.01);
-  
-  const targetScale = currentState.currentScale[currentState.variant];
-  gsap.to(modelEntity.object3D.scale, {
-    x: targetScale,
-    y: targetScale,
-    z: targetScale,
-    duration: 0.8,
-    ease: "elastic.out(1, 0.5)",
-    onComplete: () => {
-      currentState.isAnimating = false;
-    }
-  });
-}
-
-// Update model scale in real-time
+// Update model scale
 function updateModelScale() {
-  const modelEntity = elements.modelContainer.children[0];
-  if (modelEntity) {
-    const scale = currentState.currentScale[currentState.variant];
-    modelEntity.setAttribute('scale', `${scale} ${scale} ${scale}`);
+  const model = elements.modelContainer.children[0];
+  if (model) {
+    model.setAttribute('scale', `${state.currentScale} ${state.currentScale} ${state.currentScale}`);
   }
 }
 
-// Toggle between primary/alternate models
-function toggleModelVariant() {
-  if (currentState.isAnimating) return;
-  currentState.variant = currentState.variant === 'primary' ? 'alternate' : 'primary';
-  updateScaleValues();
-  animateModelChange();
-  showModelName();
-}
-
-// Cycle through languages
-function toggleLanguage() {
-  if (currentState.isAnimating) return;
-  const languages = ['english', 'arabic', 'french'];
-  const currentIndex = languages.indexOf(currentState.language);
-  currentState.language = languages[(currentIndex + 1) % languages.length];
-  showModelName();
+// Update scale display
+function updateScaleDisplay() {
+  elements.modelScaleInput.value = state.currentScale;
+  elements.modelScaleValue.textContent = state.currentScale.toFixed(2);
 }
 
 // Animated model change
 function animateModelChange() {
-  if (currentState.isAnimating) return;
-  currentState.isAnimating = true;
+  if (state.isAnimating) return;
+  state.isAnimating = true;
   
-  gsap.to(elements.sceneRoot.object3D.position, {
+  gsap.to(elements.modelContainer.object3D.position, {
     y: -0.5,
-    duration: 0.5,
+    duration: 0.3,
     onComplete: () => {
-      loadCurrentModel();
-      gsap.to(elements.sceneRoot.object3D.position, {
+      loadModel();
+      gsap.to(elements.modelContainer.object3D.position, {
         y: 0,
-        duration: 0.5
+        duration: 0.3,
+        onComplete: () => {
+          state.isAnimating = false;
+        }
       });
     }
   });
 }
 
-// Start the app
-init();
+// Initialize the application when DOM is loaded
+window.addEventListener('DOMContentLoaded', init);
