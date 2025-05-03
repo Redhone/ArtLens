@@ -4,8 +4,6 @@
   --text-color: #FFFFFF;
   --bg-dark: rgba(0, 0, 0, 0.7);
   --bg-light: rgba(255, 255, 255, 0.1);
-  --border-radius: 12px;
-  --transition-speed: 0.3s;
 }
 
 * {
@@ -18,7 +16,6 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   touch-action: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 a-scene {
@@ -27,7 +24,6 @@ a-scene {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 0;
 }
 
 /* UI Containers */
@@ -42,32 +38,26 @@ a-scene {
   gap: 15px;
   z-index: 100;
   background: linear-gradient(to top, var(--bg-dark), transparent);
-  pointer-events: none;
-}
-
-.controls-container > * {
-  pointer-events: auto;
 }
 
 /* Size Controls */
 .size-controls {
   width: 100%;
   padding: 10px 0;
-  background: var(--bg-light);
-  border-radius: var(--border-radius);
-  backdrop-filter: blur(10px);
 }
 
 .slider-container {
-  padding: 0 15px;
+  background: var(--bg-light);
+  padding: 10px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
 }
 
 .slider-container label {
   display: block;
   color: var(--text-color);
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-size: 14px;
-  font-weight: 500;
 }
 
 .slider-container input[type="range"] {
@@ -75,7 +65,6 @@ a-scene {
   height: 6px;
   border-radius: 3px;
   accent-color: var(--primary-color);
-  cursor: pointer;
 }
 
 /* Action Buttons */
@@ -92,39 +81,25 @@ a-scene {
   padding: 12px 20px;
   border-radius: 30px;
   font-size: 16px;
-  font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-speed);
+  transition: all 0.3s;
   flex: 1;
   max-width: 150px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .action-btn:hover {
   background: var(--secondary-color);
   transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.action-btn:active {
-  transform: translateY(0);
 }
 
 /* Thumbnail Selector */
 .thumbnail-container {
   display: flex;
-  gap: 10px;
-  padding: 10px 15px;
+  gap: 8px;
+  padding: 10px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  width: 100%;
-  background: var(--bg-light);
-  border-radius: var(--border-radius);
-  backdrop-filter: blur(10px);
 }
 
 .thumbnail-container::-webkit-scrollbar {
@@ -132,27 +107,18 @@ a-scene {
 }
 
 .thumbnail {
-  width: 70px;
-  height: 70px;
-  min-width: 70px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: all var(--transition-speed);
-  scroll-snap-align: start;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 
 .thumbnail:hover {
   border-color: var(--text-color);
-  transform: scale(1.05);
-}
-
-.thumbnail.active {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px var(--primary-color);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 /* Model Popup */
@@ -170,9 +136,8 @@ a-scene {
   text-align: center;
   z-index: 1000;
   opacity: 0;
-  transition: opacity var(--transition-speed);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.3s;
+  backdrop-filter: blur(5px);
 }
 
 .model-popup.show {
@@ -187,20 +152,19 @@ a-scene {
   }
   
   .action-buttons {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
   }
   
   .action-btn {
-    max-width: none;
-    padding: 10px 15px;
+    max-width: 100%;
+    padding: 10px;
     font-size: 14px;
   }
   
   .thumbnail {
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
+    width: 50px;
+    height: 50px;
   }
   
   .model-popup {
@@ -209,54 +173,18 @@ a-scene {
     padding: 10px 20px;
   }
   
-  /* Scroll hint animation */
-  @keyframes scrollHint {
-    0%, 100% { transform: translateX(0); opacity: 0.7; }
-    50% { transform: translateX(-10px); opacity: 1; }
-  }
-  
-  .thumbnail-container::after {
-    content: "→";
-    color: var(--text-color);
-    font-size: 24px;
-    position: absolute;
-    right: 20px;
-    bottom: 25px;
-    opacity: 0;
-    animation: scrollHint 2s infinite;
-    pointer-events: none;
-  }
-  
-  /* Show hint only if there's overflow */
-  .thumbnail-container.scrollable::after {
-    opacity: 0.7;
+  .slider-container {
+    padding: 8px 12px;
   }
 }
 
 @media (max-width: 480px) {
   .thumbnail {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
+    width: 40px;
+    height: 40px;
   }
   
   .model-popup {
     bottom: 180px;
-  }
-  
-  .action-buttons {
-    flex-direction: column;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  .thumbnail-container {
-    scroll-behavior: auto;
   }
 }

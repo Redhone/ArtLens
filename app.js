@@ -340,17 +340,15 @@ const MODELS = [
   },
 ]
 
-
-// Application state
+// Application State Manager
+// State management
 const state = {
   currentModelIndex: 0,
   currentVariant: 'primary',
   currentLanguage: 'english',
   currentScale: 1.0,
   isAnimating: false,
-  isMobile: /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent),
-  touchStartX: 0,
-  touchEndX: 0
+  isMobile: /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
 };
 
 // DOM elements
@@ -366,7 +364,7 @@ const elements = {
   modelName: document.getElementById('model-name')
 };
 
-// Initialize the application
+// Initialize the app
 function init() {
   setupEventListeners();
   initThumbnails();
@@ -374,132 +372,64 @@ function init() {
   showModelName();
 }
 
-// Set up all event listeners
+// Setup event listeners
 function setupEventListeners() {
-  // Button event listeners
   elements.toggleModelBtn.addEventListener('click', toggleVariant);
   elements.toggleLangBtn.addEventListener('click', toggleLanguage);
   
-  // Scale slider
   elements.modelScaleInput.addEventListener('input', (e) => {
     state.currentScale = parseFloat(e.target.value);
     elements.modelScaleValue.textContent = state.currentScale.toFixed(2);
     updateModelScale();
   });
   
-  // Mobile-specific events
+  // Handle mobile device orientation
   if (state.isMobile) {
     window.addEventListener('deviceorientation', handleOrientation, true);
-    setupTouchEvents();
   }
+}
+
+// Handle device orientation for mobile
+function handleOrientation(event) {
+  if (state.isAnimating) return;
   
-  // Keyboard navigation
-  document.addEventListener('keydown', handleKeyPress);
+  const model = elements.modelContainer.children[0];
+  if (!model) return;
+  
+  const beta = event.beta || 0;   // -180 to 180 (front/back tilt)
+  const gamma = event.gamma || 0; // -90 to 90 (left/right tilt)
+  
+  // Adjust model position slightly based on device tilt
+  const adjustX = gamma * 0.01;
+  const adjustY = beta * 0.005;
+  
+  const currentPos = model.getAttribute('position');
+  model.setAttribute('position', {
+    x: currentPos.x + adjustX,
+    y: currentPos.y + adjustY,
+    z: currentPos.z
+  });
 }
 
 // Initialize thumbnail selector
 function initThumbnails() {
-  elements.modelSelector.innerHTML = '';
-  
   MODELS.forEach((model, index) => {
     const thumb = document.createElement('img');
     thumb.src = model.assets.thumbnail;
     thumb.classList.add('thumbnail');
-    thumb.alt = `Model ${index + 1}`;
-    
-    if (index === state.currentModelIndex) {
-      thumb.classList.add('active');
-    }
-    
     thumb.addEventListener('click', () => {
       if (state.isAnimating) return;
-      selectModel(index);
+      state.currentModelIndex = index;
+      state.currentScale = model.display[state.currentVariant].baseScale;
+      updateScaleDisplay();
+      animateModelChange();
+      showModelName();
     });
-    
     elements.modelSelector.appendChild(thumb);
   });
 }
 
-// Set up touch events for swipe navigation
-function setupTouchEvents() {
-  const container = elements.modelSelector;
-  
-  container.addEventListener('touchstart', (e) => {
-    state.touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  container.addEventListener('touchend', (e) => {
-    if (state.isAnimating) return;
-    state.touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
-}
-
-// Handle swipe gestures
-function handleSwipe() {
-  const threshold = 50; // Minimum swipe distance in pixels
-  
-  if (state.touchStartX - state.touchEndX > threshold) {
-    // Swipe left - next model
-    navigateModel(1);
-  } else if (state.touchEndX - state.touchStartX > threshold) {
-    // Swipe right - previous model
-    navigateModel(-1);
-  }
-}
-
-// Handle keyboard navigation
-function handleKeyPress(e) {
-  if (state.isAnimating) return;
-  
-  switch(e.key) {
-    case 'ArrowLeft':
-      navigateModel(-1);
-      break;
-    case 'ArrowRight':
-      navigateModel(1);
-      break;
-    case 'v':
-    case 'V':
-      toggleVariant();
-      break;
-    case 'l':
-    case 'L':
-      toggleLanguage();
-      break;
-  }
-}
-
-// Navigate between models
-function navigateModel(direction) {
-  const newIndex = state.currentModelIndex + direction;
-  if (newIndex >= 0 && newIndex < MODELS.length) {
-    selectModel(newIndex);
-  }
-}
-
-// Select a specific model
-function selectModel(index) {
-  state.currentModelIndex = index;
-  state.currentScale = MODELS[index].display[state.currentVariant].baseScale;
-  updateScaleDisplay();
-  animateModelChange();
-  showModelName();
-  
-  // Update active thumbnail
-  document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.thumbnail')[index].classList.add('active');
-  
-  // Center the active thumbnail
-  const activeThumb = document.querySelector('.thumbnail.active');
-  activeThumb.scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-    inline: 'center'
-  });
-}
-
-// Load the current model
+// Load current model
 function loadModel() {
   const model = MODELS[state.currentModelIndex];
   const variant = state.currentVariant;
@@ -545,26 +475,12 @@ function animateEntrance(modelEntity) {
   });
 }
 
-// Handle device orientation (mobile)
-function handleOrientation(event) {
-  if (state.isAnimating) return;
-  
+// Update model scale
+function updateModelScale() {
   const model = elements.modelContainer.children[0];
-  if (!model) return;
-  
-  const beta = event.beta || 0;   // -180 to 180 (front/back tilt)
-  const gamma = event.gamma || 0; // -90 to 90 (left/right tilt)
-  
-  // Adjust model position slightly based on device tilt
-  const adjustX = gamma * 0.01;
-  const adjustY = beta * 0.005;
-  
-  const currentPos = model.getAttribute('position');
-  model.setAttribute('position', {
-    x: currentPos.x + adjustX,
-    y: currentPos.y + adjustY,
-    z: currentPos.z
-  });
+  if (model) {
+    model.setAttribute('scale', `${state.currentScale} ${state.currentScale} ${state.currentScale}`);
+  }
 }
 
 // Toggle between primary/alternate models
@@ -597,14 +513,6 @@ function showModelName() {
   }, 3000);
 }
 
-// Update model scale
-function updateModelScale() {
-  const model = elements.modelContainer.children[0];
-  if (model) {
-    model.setAttribute('scale', `${state.currentScale} ${state.currentScale} ${state.currentScale}`);
-  }
-}
-
 // Update scale display
 function updateScaleDisplay() {
   elements.modelScaleInput.value = state.currentScale;
@@ -632,5 +540,5 @@ function animateModelChange() {
   });
 }
 
-// Initialize the application when DOM is loaded
+// Start the app
 window.addEventListener('DOMContentLoaded', init);
