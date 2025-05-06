@@ -348,8 +348,8 @@ const state = {
   currentLanguage: 'english',
   currentScale: 1.0,
   isAnimating: false,
-  isMobile: /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-};
+/*   isMobile: /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+ */};
 
 // DOM elements
 const elements = {
