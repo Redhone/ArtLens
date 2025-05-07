@@ -3,9 +3,9 @@ const MODELS = [
   {
     id: 'model1',
     name: { 
-      english: "MODEL 1", 
-      arabic: "مودل 1",
-      french: "MODELE 1" 
+      english: "Memoria presbyteri Felicis, vi/xit ---.", 
+      arabic: "قبر الكاهن فيليكس، عاش في نهاية القرن الرابع وبداية القرن الخامس",
+      french: "Tombe du prétre Félix, Il a vécu au fin du IVe- début du Ve siècle" 
     },
     assets: {
       primary: 'assets/models/model1/primary.glb',
@@ -30,9 +30,9 @@ const MODELS = [
   {
     id: 'model2',
     name: { 
-      english: "MODEL 2", 
-      arabic: "مودل 2",
-      french: "MODELE 2" 
+      english: "Memoria [---]. Decessit pridie [Kalendas / Nonas / Idus] [mensis] [---].", 
+      arabic: "قبر ...، (هو / هي) غادر(ت) ليلة، في أواخر القرن الرابع وبداية القرن الخامس الميلادي.",
+      french: "Tombe de... Il (ou elle) s’en est allé(e) la veille des Calendes. Fin du IVᵉ – début du Vᵉ siècle." 
     },
     assets: {
       primary: 'assets/models/model2/primary.glb',
@@ -56,9 +56,9 @@ const MODELS = [
   {
     id: 'model3',
     name: { 
-      english: "MODEL 3", 
-      arabic: "مودل 3",
-      french: "MODELE 3" 
+      english: "Memoria Migninae, vixit annos IV dies VI. Recessit die III Nonas Iulias anno provinciae CCCXC", 
+      arabic: "قبر مجينا التي عاشت أربعة أشهر وستة أيام، غادرت في اليوم الثالث من العشر الأوائل لشهر يوليو سنة المقاطعة 390 (3 يوليو 129 م)",
+      french: "Tombe de Miggina. Elle a vécu un an, quatre mois, six jours. Elle s’en est allée le 3e jour des nones de juillet, l'année de la province 390 (3juillet 429 ap. J.-C.)." 
     },
     assets: {
       primary: 'assets/models/model3/primary.glb',
@@ -82,9 +82,9 @@ const MODELS = [
   {
     id: 'model4',
     name: { 
-      english: "MODEL 4", 
-      arabic: "مودل 4",
-      french: "MODELE 4" 
+      english: "Gallica, infans, in pace decessit. Vixit menses IV. Huic mater memoriam [posuit / fecit]", 
+      arabic: "حاليكا الرضيعة، غادرت في أمان الله. عاشت شهراً واحداً. والدتها هي التي بنت لها هذا القبر. نهاية القرن الرابع وبداية القرن الخامس الميلادي",
+      french: "Gallica, un bébé, s’en est allée dans la paix (du Seigneur). Elle a vécu quatre mois. C’est sa mère qui lui a fail faire cette tombe. Fin du IVe- début du Ve siècle." 
     },
     assets: {
       primary: 'assets/models/model4/primary.glb',
@@ -108,9 +108,9 @@ const MODELS = [
   {
     id: 'model5',
     name: { 
-      english: "MODEL 5", 
-      arabic: "مودل 5",
-      french: "MODELE 5" 
+      english: "Memoria Adcodati, depositus est die XI Kalendas Iunias, anno provinciae CCCXC.", 
+      arabic: "قبر أديوداتوس، الذي دُفن في اليوم الحادي عشر من أوائل شهر جوان، في سنة 390 حسب التقويم المحلي للمقاطعة، الموافق 21 ماي سنة 129 ميلاديًا",
+      french: "Tombe de Adéodatus. Il a été enseveli le 11e jour des calendes de juin, l'année de la province 390 (soit le 21 mai 429 ap.J.-C.)." 
     },
     assets: {
       primary: 'assets/models/model5/primary.glb',
@@ -134,9 +134,9 @@ const MODELS = [
   {
     id: 'model6',
     name: { 
-      english: "MODEL 6", 
-      arabic: "مودل 6",
-      french: "MODELE 6" 
+      english: "Memoria Mariae Equitiolae, quae et Silica, vixit annis XXVIIII. Praecessit in pace die pridie Idus Martias, anno provinciae CCCLIIII.", 
+      arabic: "قبر ماريا كويتيولا، الملقبة بسيليكا، التي عاشت 29 سنة. غادرت في أمان الله ليلة منتصف شهر مارس، سنة المقاطعة 354 (14 مارس 393 م)",
+      french: "Tombe de Maria Equitiola, surnommée Siliqua. Elle a vécuvingt-neuf ans. Elle s’en est allée dans la paix (du Seigneur) la velle des ides de mars, larmée de la province 354 (14 mars 393 ap. J.-C).Fin du IVe- début du Vesiècle" 
     },
     assets: {
       primary: 'assets/models/model6/primary.glb',
@@ -160,9 +160,9 @@ const MODELS = [
   {
     id: 'model7',
     name: { 
-      english: "MODEL 7", 
-      arabic: "مودل 7",
-      french: "MODELE 7" 
+      english: "Sepulcrum (...) Anii. Finis saeculi IV - initium saeculi V.", 
+      arabic: "قبر... أنوس، نهاية القرن الرابع وبداية القرن الخامس",
+      french: "Tombe de (...) Anus. Fin du IVe - début du Ve siècle" 
     },
     assets: {
       primary: 'assets/models/model7/primary.glb',
@@ -186,9 +186,9 @@ const MODELS = [
   {
     id: 'model8',
     name: { 
-      english: "MODEL 8", 
-      arabic: "مودل 8",
-      french: "MODELE 8" 
+      english: "Adeodatus vixit annos --- menses --- III, anno provinciae CCC.", 
+      arabic: "ادبود أتوس عاش ... (سنة ؟) (...) 3 أشهر سنة المقاطعة 5300 (339) + ....؟ م",
+      french: "Adéudatus a vécu ...(ans 3,)(.. +)3 mois.Année de la province 300+ ?(339+...? ap. J.-C.)]." 
     },
     assets: {
       primary: 'assets/models/model8/primary.glb',
@@ -212,9 +212,9 @@ const MODELS = [
   {
     id: 'model9',
     name: { 
-      english: "MODEL 9", 
-      arabic: "مودل 9",
-      french: "MODELE 9" 
+      english: "Memoria [---l]iani. Vixit annis XXII. [Depositus die ---].", 
+      arabic: "قبر إيانوس. عاش 22 سنة. توفي في اليوم الثاني والعشرين من شهر [---]، سنة [---]، الموافق لسنة [---] من تقويم المقاطعة",
+      french: "Tombe de Jianus. Il a vécu 22 ans, ou peut-être 22 jours, ou encore [x] ans, [y] mois et 22 jours. Il est également possible qu’il soit mort en l’an 22 de l’ère provinciale." 
     },
     assets: {
       primary: 'assets/models/model9/primary.glb',
@@ -238,9 +238,9 @@ const MODELS = [
   {
     id: 'model10',
     name: { 
-      english: "MODEL 10", 
-      arabic: "مودل 10",
-      french: "MODELE 10" 
+      english: "Cresconia fidelis, vixit in pace, obiit annis VI, pridie Idus Iunias, anno provinciae CCCXXXVIIII.", 
+      arabic: "قبر كرسونيا، المسيحية الوفية، التي عاشت في أمان الله، توفيت في سن السادسة، ليلة أواخر شهر جوان، في سنة المقاطعة 339، الموافق 12 جوان 378 م",
+      french: "Cresconia, fidèle chrétienne, a vécu dans la paix(du Seigneur). Elle est morte à l’âge de six ans, la veille des ides de juin, l'année de la province 339(12 juin 378ap. ).-C.). " 
     },
     assets: {
       primary: 'assets/models/model10/primary.glb',
@@ -264,9 +264,9 @@ const MODELS = [
   {
     id: 'model11',
     name: { 
-      english: "MODEL 11", 
-      arabic: "مودل 11",
-      french: "MODELE 11" 
+      english: "Musivum cum torquata duplici quae delimitat campos ornamentis geometricis et vegetalibus stylizatis decoratos; margo cum linea postium", 
+      arabic: "فسيفساء تحتوي على ضفيرة مزدوجة الحبل تحدد حقولاً مزخرفة بزخارف هندسية ونباتية منمقة؛ يحيط بها إطار ذو خط من العقود",
+      french: "Mosaïque avec une tresse à deux brins délimitant des champs qui contiennent un décor géométrique el végétal stylisé ; bordure á ligne de postes." 
     },
     assets: {
       primary: 'assets/models/model11/primary.glb',
@@ -290,9 +290,9 @@ const MODELS = [
   {
     id: 'model12',
     name: { 
-      english: "MODEL 12", 
-      arabic: "مودل 12",
-      french: "MODELE 12" 
+      english: "Memoria Aesculapii, qui vixit fidelis.", 
+      arabic: "قبر إسكالبيوس الذي عاش مسيحياً في نهاية القرن الرابع الميلادي وبداية القرن الخامس الميلادي",
+      french: "Tombe d'Esculape, qui a vécu en fidèle chrétien, à la fin du IVe siècle et au début du Ve siècle." 
     },
     assets: {
       primary: 'assets/models/model12/primary.glb',
@@ -316,9 +316,9 @@ const MODELS = [
   {
     id: 'model13',
     name: { 
-      english: "MODEL 13", 
-      arabic: "مودل 13",
-      french: "MODELE 13" 
+      english: "Musivum cum ornatu orthogonali taliariorum coniunctorum, adiacentium et oppositorum", 
+      arabic: "فسيفساء بزخرفة هندسية من عظام النرد المتشابكة والمتجاورة والمتقابلة",
+      french: "Mosaïque avec un décor orthogonal d'osselets emboités, adjacents et opposés." 
     },
     assets: {
       primary: 'assets/models/model13/primary.glb',
@@ -449,7 +449,7 @@ function loadModel() {
   modelEntity.setAttribute('animation__rotate', {
     property: 'rotation.y',
     to: 360,
-    dur: 20000,
+    dur: 2000,
     loop: true,
     easing: 'linear'
   });
@@ -510,7 +510,7 @@ function showModelName() {
   elements.modelPopup.classList.add('show');
   setTimeout(() => {
     elements.modelPopup.classList.remove('show');
-  }, 3000);
+  }, 7000);
 }
 
 // Update scale display
