@@ -446,12 +446,20 @@ function loadModel() {
   modelEntity.setAttribute('scale', `${state.currentScale} ${state.currentScale} ${state.currentScale}`);
   
   // Add rotation animation
-  modelEntity.setAttribute('animation__rotate', {
-    property: 'rotation.y',
-    to: 360,
+ // modelEntity.setAttribute('animation__rotate', {
+   // property: 'rotation.y',
+   // to: 360,
+   // dur: 2000,
+   // loop: true,
+   // easing: 'linear'
+  //});
+  modelEntity.setAttribute('animation__float', {
+    property: 'position.y',
+    to: '0.2',  // Adjust this value for how high you want it to float
     dur: 2000,
     loop: true,
-    easing: 'linear'
+    easing: 'easeInOutQuad',
+    dir: 'alternate'  // Makes the animation go back and forth
   });
   
   elements.modelContainer.appendChild(modelEntity);
