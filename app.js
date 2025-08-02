@@ -8,8 +8,8 @@ const MODELS = [
       french: "Tombe du prétre Félix, Il a vécu au fin du IVe- début du Ve siècle" 
     },
     assets: {
-      primary: 'assets/models/model1/primary.glb',
-      alternate: 'assets/models/model1/alternate.glb',
+      primary: 'assets/models/model1/primary-compressed.glb',
+      alternate: 'assets/models/model1/alternate-compressed.glb',
       thumbnail: 'assets/models/model1/thumbnail.png'
     },
     display: {
@@ -35,8 +35,8 @@ const MODELS = [
       french: "Tombe de... Il (ou elle) s’en est allé(e) la veille des Calendes. Fin du IVᵉ – début du Vᵉ siècle." 
     },
     assets: {
-      primary: 'assets/models/model2/primary.glb',
-      alternate: 'assets/models/model2/alternate.glb',
+      primary: 'assets/models/model2/primary-compressed.glb',
+      alternate: 'assets/models/model2/alternate-compressed.glb',
       thumbnail: 'assets/models/model2/thumbnail.png'
     },
     display: {
@@ -61,8 +61,8 @@ const MODELS = [
       french: "Tombe de Miggina. Elle a vécu un an, quatre mois, six jours. Elle s’en est allée le 3e jour des nones de juillet, l'année de la province 390 (3juillet 429 ap. J.-C.)." 
     },
     assets: {
-      primary: 'assets/models/model3/primary.glb',
-      alternate: 'assets/models/model3/alternate.glb',
+      primary: 'assets/models/model3/primary-compressed.glb',
+      alternate: 'assets/models/model3/alternate-compressed.glb',
       thumbnail: 'assets/models/model3/thumbnail.png'
     },
     display: {
@@ -87,8 +87,8 @@ const MODELS = [
       french: "Gallica, un bébé, s’en est allée dans la paix (du Seigneur). Elle a vécu quatre mois. C’est sa mère qui lui a fail faire cette tombe. Fin du IVe- début du Ve siècle." 
     },
     assets: {
-      primary: 'assets/models/model4/primary.glb',
-      alternate: 'assets/models/model4/alternate.glb',
+      primary: 'assets/models/model4/primary-compressed.glb',
+      alternate: 'assets/models/model4/alternate-compressed.glb',
       thumbnail: 'assets/models/model4/thumbnail.png'
     },
     display: {
@@ -113,8 +113,8 @@ const MODELS = [
       french: "Tombe de Adéodatus. Il a été enseveli le 11e jour des calendes de juin, l'année de la province 390 (soit le 21 mai 429 ap.J.-C.)." 
     },
     assets: {
-      primary: 'assets/models/model5/primary.glb',
-      alternate: 'assets/models/model5/alternate.glb',
+      primary: 'assets/models/model5/primary-compressed.glb',
+      alternate: 'assets/models/model5/alternate-compressed.glb',
       thumbnail: 'assets/models/model5/thumbnail.png'
     },
     display: {
@@ -139,8 +139,8 @@ const MODELS = [
       french: "Tombe de Maria Equitiola, surnommée Siliqua. Elle a vécuvingt-neuf ans. Elle s’en est allée dans la paix (du Seigneur) la velle des ides de mars, larmée de la province 354 (14 mars 393 ap. J.-C).Fin du IVe- début du Vesiècle" 
     },
     assets: {
-      primary: 'assets/models/model6/primary.glb',
-      alternate: 'assets/models/model6/alternate.glb',
+      primary: 'assets/models/model6/primary-compressed.glb',
+      alternate: 'assets/models/model6/alternate-compressed.glb',
       thumbnail: 'assets/models/model6/thumbnail.png'
     },
     display: {
@@ -165,8 +165,8 @@ const MODELS = [
       french: "Tombe de (...) Anus. Fin du IVe - début du Ve siècle" 
     },
     assets: {
-      primary: 'assets/models/model7/primary.glb',
-      alternate: 'assets/models/model7/alternate.glb',
+      primary: 'assets/models/model7/primary-compressed.glb',
+      alternate: 'assets/models/model7/alternate-compressed.glb',
       thumbnail: 'assets/models/model7/thumbnail.png'
     },
     display: {
@@ -191,8 +191,8 @@ const MODELS = [
       french: "Adéudatus a vécu ...(ans 3,)(.. +)3 mois.Année de la province 300+ ?(339+...? ap. J.-C.)]." 
     },
     assets: {
-      primary: 'assets/models/model8/primary.glb',
-      alternate: 'assets/models/model8/alternate.glb',
+      primary: 'assets/models/model8/primary-compressed.glb',
+      alternate: 'assets/models/model8/alternate-compressed.glb',
       thumbnail: 'assets/models/model8/thumbnail.png'
     },
     display: {
@@ -217,8 +217,8 @@ const MODELS = [
       french: "Tombe de Jianus. Il a vécu 22 ans, ou peut-être 22 jours, ou encore [x] ans, [y] mois et 22 jours. Il est également possible qu’il soit mort en l’an 22 de l’ère provinciale." 
     },
     assets: {
-      primary: 'assets/models/model9/primary.glb',
-      alternate: 'assets/models/model9/alternate.glb',
+      primary: 'assets/models/model9/primary-compressed.glb',
+      alternate: 'assets/models/model9/alternate-compressed.glb',
       thumbnail: 'assets/models/model9/thumbnail.png'
     },
     display: {
@@ -243,8 +243,8 @@ const MODELS = [
       french: "Cresconia, fidèle chrétienne, a vécu dans la paix(du Seigneur). Elle est morte à l’âge de six ans, la veille des ides de juin, l'année de la province 339(12 juin 378ap. ).-C.). " 
     },
     assets: {
-      primary: 'assets/models/model10/primary.glb',
-      alternate: 'assets/models/model10/alternate.glb',
+      primary: 'assets/models/model10/primary-compressed.glb',
+      alternate: 'assets/models/model10/alternate-compressed.glb',
       thumbnail: 'assets/models/model10/thumbnail.png'
     },
     display: {
@@ -269,8 +269,8 @@ const MODELS = [
       french: "Mosaïque avec une tresse à deux brins délimitant des champs qui contiennent un décor géométrique el végétal stylisé ; bordure á ligne de postes." 
     },
     assets: {
-      primary: 'assets/models/model11/primary.glb',
-      alternate: 'assets/models/model11/alternate.glb',
+      primary: 'assets/models/model11/primary-compressed.glb',
+      alternate: 'assets/models/model11/alternate-compressed.glb',
       thumbnail: 'assets/models/model11/thumbnail.png'
     },
     display: {
@@ -295,8 +295,8 @@ const MODELS = [
       french: "Tombe d'Esculape, qui a vécu en fidèle chrétien, à la fin du IVe siècle et au début du Ve siècle." 
     },
     assets: {
-      primary: 'assets/models/model12/primary.glb',
-      alternate: 'assets/models/model12/alternate.glb',
+      primary: 'assets/models/model12/primary-compressed.glb',
+      alternate: 'assets/models/model12/alternate-compressed.glb',
       thumbnail: 'assets/models/model12/thumbnail.png'
     },
     display: {
@@ -321,8 +321,8 @@ const MODELS = [
       french: "Mosaïque avec un décor orthogonal d'osselets emboités, adjacents et opposés." 
     },
     assets: {
-      primary: 'assets/models/model13/primary.glb',
-      alternate: 'assets/models/model13/alternate.glb',
+      primary: 'assets/models/model13/primary-compressed.glb',
+      alternate: 'assets/models/model13/alternate-compressed.glb',
       thumbnail: 'assets/models/model13/thumbnail.png'
     },
     display: {
