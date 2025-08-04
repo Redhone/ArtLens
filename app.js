@@ -10,7 +10,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model1/primary-compressed.glb',
       alternate: 'assets/models/model1/alternate-compressed.glb',
-      thumbnail: 'assets/models/model1/thumbnail.png'
+      thumbnail: 'assets/models/model1/thb.png'
     },
     display: {
       primary: {
@@ -37,7 +37,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model2/primary-compressed.glb',
       alternate: 'assets/models/model2/alternate-compressed.glb',
-      thumbnail: 'assets/models/model2/thumbnail.png'
+      thumbnail: 'assets/models/model2/thb.png'
     },
     display: {
       primary: {
@@ -63,7 +63,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model3/primary-compressed.glb',
       alternate: 'assets/models/model3/alternate-compressed.glb',
-      thumbnail: 'assets/models/model3/thumbnail.png'
+      thumbnail: 'assets/models/model3/thb.png'
     },
     display: {
       primary: {
@@ -89,7 +89,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model4/primary-compressed.glb',
       alternate: 'assets/models/model4/alternate-compressed.glb',
-      thumbnail: 'assets/models/model4/thumbnail.png'
+      thumbnail: 'assets/models/model4/thb.png'
     },
     display: {
       primary: {
@@ -115,7 +115,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model5/primary-compressed.glb',
       alternate: 'assets/models/model5/alternate-compressed.glb',
-      thumbnail: 'assets/models/model5/thumbnail.png'
+      thumbnail: 'assets/models/model5/thb.png'
     },
     display: {
       primary: {
@@ -141,7 +141,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model6/primary-compressed.glb',
       alternate: 'assets/models/model6/alternate-compressed.glb',
-      thumbnail: 'assets/models/model6/thumbnail.png'
+      thumbnail: 'assets/models/model6/thb.png'
     },
     display: {
       primary: {
@@ -167,7 +167,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model7/primary-compressed.glb',
       alternate: 'assets/models/model7/alternate-compressed.glb',
-      thumbnail: 'assets/models/model7/thumbnail.png'
+      thumbnail: 'assets/models/model7/thb.png'
     },
     display: {
       primary: {
@@ -193,7 +193,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model8/primary-compressed.glb',
       alternate: 'assets/models/model8/alternate-compressed.glb',
-      thumbnail: 'assets/models/model8/thumbnail.png'
+      thumbnail: 'assets/models/model8/thb.png'
     },
     display: {
       primary: {
@@ -219,7 +219,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model9/primary-compressed.glb',
       alternate: 'assets/models/model9/alternate-compressed.glb',
-      thumbnail: 'assets/models/model9/thumbnail.png'
+      thumbnail: 'assets/models/model9/thb.png'
     },
     display: {
       primary: {
@@ -245,7 +245,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model10/primary-compressed.glb',
       alternate: 'assets/models/model10/alternate-compressed.glb',
-      thumbnail: 'assets/models/model10/thumbnail.png'
+      thumbnail: 'assets/models/model10/thb.png'
     },
     display: {
       primary: {
@@ -271,7 +271,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model11/primary-compressed.glb',
       alternate: 'assets/models/model11/alternate-compressed.glb',
-      thumbnail: 'assets/models/model11/thumbnail.png'
+      thumbnail: 'assets/models/model11/thb.png'
     },
     display: {
       primary: {
@@ -297,7 +297,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model12/primary-compressed.glb',
       alternate: 'assets/models/model12/alternate-compressed.glb',
-      thumbnail: 'assets/models/model12/thumbnail.png'
+      thumbnail: 'assets/models/model12/thb.png'
     },
     display: {
       primary: {
@@ -323,7 +323,7 @@ const MODELS = [
     assets: {
       primary: 'assets/models/model13/primary-compressed.glb',
       alternate: 'assets/models/model13/alternate-compressed.glb',
-      thumbnail: 'assets/models/model13/thumbnail.png'
+      thumbnail: 'assets/models/model13/thb.png'
     },
     display: {
       primary: {
