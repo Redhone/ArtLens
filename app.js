@@ -217,8 +217,8 @@ const MODELS = [
       french: "Tombe de Jianus. Il a vécu 22 ans, ou peut-être 22 jours, ou encore [x] ans, [y] mois et 22 jours. Il est également possible qu’il soit mort en l’an 22 de l’ère provinciale." 
     },
     assets: {
-      primary: 'assets/models/model9/primary-compressed.glb',
-      alternate: 'assets/models/model9/alternate-compressed.glb',
+      primary: 'assets/models/model9/primary.glb',
+      alternate: 'assets/models/model9/alternate.glb',
       thumbnail: 'assets/models/model9/thb.png'
     },
     display: {
@@ -324,6 +324,31 @@ const MODELS = [
       primary: 'assets/models/model13/primary-compressed.glb',
       alternate: 'assets/models/model13/alternate-compressed.glb',
       thumbnail: 'assets/models/model13/thb.png'
+    },
+    display: {
+      primary: {
+        baseScale: 1.2,
+        position: { x: 0, y: 0, z: 0 },
+        rotation: { x: 0, y: 0, z: 0 }
+      },
+      alternate: {
+        baseScale: 0.4,
+        position: { x: 0, y: 0, z: 0 },
+        rotation: { x: 0, y: 90, z: 0 }
+      }
+    }
+  },
+  {
+    id: 'model14',
+    name: { 
+      english: "Mosaica Bacchi, anno 1965 in regione Templi reperta, inter rarissima saeculi quarti in Africa Septentrionali numeratur. Bacchum in curru a duabus pantheris tracto depingit, comitantibus Pane, Sileno et bestiis ut elephanto et camelopardo, ambitu ornato vultibus variis senis, centauro contra feras pugnante atque formis geometricis accuratis.", 
+      arabic: " فسيفساء الإله باخوس، المكتشفة عام 1965 بحي المعبد، تعد من أندر روائع القرن الرابع الميلادي في شمال إفريقيا، تصور باخوس على عربة تجرها نمرتان وسط موكب يضم بان وسيلان وحيوانات كالفيل والزرافة، بإطار يضم وجوه شيخ متغيرة وقنطريوس يقاتل وحوشاً، وزخارف هندسية دقيقة.",
+      french: "La mosaïque de Bacchus, découverte en 1965 dans le quartier du Temple, est l’une des plus rares merveilles du IVᵉ siècle en Afrique du Nord. Elle représente Bacchus sur un char tiré par deux panthères, entouré de Pan, Silène et d’animaux comme l’éléphant et la girafe, avec un cadre orné de visages changeants d’un vieil homme, d’un centaure combattant des fauves et de motifs géométriques précis.." 
+    },
+    assets: {
+      primary: 'assets/models/model14/primary.glb',
+      alternate: 'assets/models/model14/alternate.glb',
+      thumbnail: 'assets/models/model14/thumbnail.png'
     },
     display: {
       primary: {
