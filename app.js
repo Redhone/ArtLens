@@ -228,9 +228,9 @@ const MODELS = [
         rotation: { x: 0, y: 0, z: 0 }
       },
       alternate: {
-        baseScale: 0.4,
+        baseScale: 1,
         position: { x: 0, y: 0, z: 0 },
-        rotation: { x: 0, y: 0, z: 0 }
+        rotation: { x: 0, y: 45, z: 0 }
       }
     }
   },
@@ -359,7 +359,7 @@ const MODELS = [
       alternate: {
         baseScale: 1,
         position: { x: 0, y: 0, z: 0 },
-        rotation: { x: 0, y: 0, z: 0 }
+        rotation: { x: 0, y: 45, z: 0 }
       }
     }
   },
